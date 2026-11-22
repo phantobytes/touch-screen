@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An interactive learning lab explaining how capacitive touchscreens detect your finger.">
+  <title>TOUCHSENSE — The Science Behind Every Touch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#home"><span class="brand-mark">T</span> TOUCH<span>SENSE</span></a>
+    <nav>
+      <a href="#how">How it works</a><a href="#lab">Touch lab</a><a href="#experiments">Experiments</a>
+    </nav>
+    <a class="top-cta" href="#lab">Open simulator <span>↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> INTERACTIVE TECHNOLOGY LAB</div>
+        <h1>Ever wondered how your phone <em>feels</em> your touch?</h1>
+        <p class="hero-lede">Explore the invisible science inside a capacitive touchscreen. Change the conditions, touch the screen, and watch the sensor system respond.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#lab">Try the simulator <span>→</span></a>
+          <a class="text-link" href="#how">Understand the science <span>↓</span></a>
+        </div>
+        <div class="hero-facts"><div><strong>01</strong><span>Sensor grid</span></div><div><strong>02</strong><span>Capacitance change</span></div><div><strong>03</strong><span>Touch coordinates</span></div></div>
+      </div>
+      <div class="hero-visual">
+        <div class="visual-label"><span class="live-dot"></span> LIVE CONCEPT MODEL</div>
+        <div class="phone">
+          <div class="phone-camera"></div>
+          <div class="phone-screen" id="heroScreen">
+            <div class="screen-top"><span>TOUCHSENSE OS</span><span>•••</span></div>
+            <div class="screen-grid" id="heroGrid"></div>
+            <div class="finger-glow"></div>
+            <div class="screen-caption">A touch changes the local electric field</div>
+          </div>
+        </div>
+        <div class="float-chip chip-a"><span class="chip-icon">⌖</span><span><b>POSITION FOUND</b><small>X: 08 · Y: 05</small></span></div>
+        <div class="float-chip chip-b"><span class="chip-icon">ϟ</span><span><b>CAPACITANCE</b><small>Local change detected</small></span></div>
+      </div>
+    </section>
+
+    <section class="section intro-section" id="how">
+      <div class="section-heading"><div><div class="eyebrow">THE MECHANISM</div><h2>What happens beneath the glass?</h2></div><p>A modern capacitive touchscreen does not need a button to know where you touched. It senses a tiny electrical change.</p></div>
+      <div class="steps">
+        <article class="step-card"><div class="step-number">01</div><div class="step-art electrodes"><span></span><span></span><span></span><span></span><span></span><span></span></div><h3>A transparent sensor grid</h3><p>Transparent conductive electrodes form a grid beneath the glass. The controller continually scans this grid.</p></article>
+        <article class="step-card"><div class="step-number">02</div><div class="step-art field-art"><div class="field-rings"></div><div class="mini-finger"></div></div><h3>Your finger changes capacitance</h3><p>Your finger affects the local electric field, changing the capacitance measured around that area.</p></article>
+        <article class="step-card"><div class="step-number">03</div><div class="step-art coordinate-art"><span class="crosshair">+</span><b>X 08</b><b>Y 05</b></div><h3>The controller finds the position</h3><p>The controller analyses the sensor readings and estimates the touch location, then sends coordinates to the phone.</p></article>
+      </div>
+      <div class="note"><span>ⓘ</span><p><b>Important:</b> This is a simplified educational model. Real touchscreen designs and signal-processing methods vary by device.</p></div>
+    </section>
+
+    <section class="section lab-section" id="lab">
+      <div class="section-heading"><div><div class="eyebrow">INTERACTIVE SIMULATOR</div><h2>Enter the touch lab.</h2></div><p>Tap or click the screen. Change the controls and see how the model responds.</p></div>
+      <div class="lab-layout">
+        <div class="sim-card">
+          <div class="sim-top"><div><span class="live-dot"></span> SENSOR ARRAY <small>· 12 × 8 MODEL</small></div><button class="reset-button" id="resetBtn">↺ Reset</button></div>
+          <div class="sim-screen-wrap">
+            <div class="sim-screen" id="simScreen" aria-label="Interactive simulated touchscreen. Click or tap to place a touch.">
+              <div class="grid-overlay" id="sensorGrid"></div>
+              <div class="touch-layer" id="touchLayer"></div>
+              <div class="screen-hint" id="screenHint">TAP OR CLICK ANYWHERE</div>
+              <div class="axis-label axis-x">X →</div><div class="axis-label axis-y">Y ↓</div>
+            </div>
+          </div>
+          <div class="sim-bottom"><span><i class="legend detected"></i> Sensor response</span><span><i class="legend point"></i> Touch point</span><span id="touchCount">0 touches</span></div>
+        </div>
+        <aside class="controls-card">
+          <div class="control-heading"><div class="eyebrow">CONTROL PANEL</div><span class="status-pill" id="statusPill">READY</span></div>
+          <div class="control-group"><div class="control-label"><label for="sensitivity">Sensor sensitivity</label><output id="sensitivityValue">65%</output></div><input id="sensitivity" type="range" min="0" max="100" value="65"><div class="range-ends"><span>Low</span><span>High</span></div></div>
+          <div class="control-group"><div class="control-label"><label for="fingerSize">Finger size</label><output id="fingerValue">50%</output></div><input id="fingerSize" type="range" min="15" max="100" value="50"><div class="range-ends"><span>Small</span><span>Large</span></div></div>
+          <div class="control-group"><div class="control-label"><label for="interference">Electrical noise</label><output id="interferenceValue">10%</output></div><input id="interference" type="range" min="0" max="100" value="10"><div class="range-ends"><span>None</span><span>High</span></div></div>
+          <div class="control-group toggle-group"><div><b>Multi-touch mode</b><small>Place up to two touch points</small></div><label class="switch"><input id="multiTouch" type="checkbox"><span></span></label></div>
+          <div class="readout">
+            <div class="readout-title">LIVE SENSOR READOUT <span>● SIMULATED</span></div>
+            <div class="readout-grid"><div><small>TOUCH STATUS</small><b id="touchStatus">Waiting</b></div><div><small>EST. X POSITION</small><b id="xValue">—</b></div><div><small>EST. Y POSITION</small><b id="yValue">—</b></div><div><small>RESPONSE LEVEL</small><b id="responseValue">0%</b></div></div>
+          </div>
+          <p class="control-foot">Move a slider or tap the screen to update the model instantly.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section experiment-section" id="experiments">
+      <div class="section-heading"><div><div class="eyebrow">TRY IT YOURSELF</div><h2>Run an experiment.</h2></div><p>Use the simulator above to investigate these three questions.</p></div>
+      <div class="experiment-grid">
+        <article class="experiment"><div class="exp-tag">EXPERIMENT 01</div><div class="exp-icon">◉</div><h3>Find the detection threshold</h3><p>Lower sensitivity little by little. At what setting does the model stop detecting your touch?</p><button class="exp-button" data-experiment="sensitivity">Set up experiment <span>→</span></button></article>
+        <article class="experiment"><div class="exp-tag">EXPERIMENT 02</div><div class="exp-icon">◎</div><h3>Try multi-touch</h3><p>Turn on multi-touch mode and place two points. Notice how two separate locations are reported.</p><button class="exp-button" data-experiment="multi">Set up experiment <span>→</span></button></article>
+        <article class="experiment"><div class="exp-tag">EXPERIMENT 03</div><div class="exp-icon">ϟ</div><h3>Introduce electrical noise</h3><p>Increase the noise control. Observe how a noisy signal can make a reading less reliable in this model.</p><button class="exp-button" data-experiment="noise">Set up experiment <span>→</span></button></article>
+      </div>
+    </section>
+
+    <section class="section challenge-section">
+      <div class="challenge-copy"><div class="eyebrow">KNOWLEDGE CHECK</div><h2>Can you think like a touch controller?</h2><p>Answer three quick questions to check what you have learned.</p></div>
+      <div class="quiz-card" id="quizCard">
+        <div class="quiz-progress"><span id="quizStep">QUESTION 1 / 3</span><span id="quizScore">SCORE: 0</span></div>
+        <h3 id="quizQuestion">What does your finger change when it touches a capacitive screen?</h3>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback" aria-live="polite"></div>
+        <button class="button primary quiz-next" id="quizNext" disabled>Next question →</button>
+      </div>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#home"><span class="brand-mark">T</span> TOUCH<span>SENSE</span></a><p>Making everyday technology easier to understand.</p><span class="footer-note">A student-built interactive learning project · Simplified simulation</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
